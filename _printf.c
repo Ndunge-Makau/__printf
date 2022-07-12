@@ -1,46 +1,46 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
 
 /**
- * _printf - produces output accodring to a format
+ * _printf - print
  * @format: character string
- * Return: Number of characters printed
+ * Return: number of characters printed
  */
-
 int _printf(const char *format, ...)
 {
-	int (*pfunc)(va_list, flags_t *);
-	const char *p;
-	va_list arguments;
-	flags_t flags = {0, 0, 0};
+	int count = 0, i;
+	va_list data;
 
-	resister int count = o;
+	va_start(data, format);
 
-	va_start(arguments, format);
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for (p = format; *p; p++)
+	for (i = 0; format[i] != '\0'; )
 	{
-		if (*p == '%')
+		if (format[i] != '%')
 		{
-			p++;
-			if (*p == '%')
-			{
-				count += _putchar('%');
-				continue;
-			}
-			while (get_flag(*p, &flags))
-				p++;
-			pfunct = get_print(*p);
-			count += (pfunct)
-				? pfunc(arguments, &flags)
-				: _printf("%%%c", *p);
+			count += _putchar(format[i]);
+			i++;
 		}
-		else
-			count += _putchar(*p);
+		else if (format[i] == '%' && format[i + 1] != ' ')
+		{
+			switch (format[i + 1])
+			{
+				case 'c':
+					count += _putchar(va_arg(data, int));
+					break;
+				case 's':
+					count += print_string(va_arg(data, char *));
+					break;
+				case '%':
+					count += _putchar('%');
+					break;
+				default:
+					break;
+		}
+
+			i += 2;
+		}
 	}
-	_putchar(-1);
-	va_end(arguments);
+
 	return (count);
 }
