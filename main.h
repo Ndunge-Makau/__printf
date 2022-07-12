@@ -5,5 +5,5 @@
 int _putchar(char c);
 int _printf(const char *format, ...);
 int print_string(char *string);
-int_print_int(long int var);
+int print_int(long int var);
 #endif

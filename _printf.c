@@ -39,10 +39,10 @@ int _printf(const char *format, ...)
 						total += 1;
 					break;
 				case 'd':
-					total += _print_int((long)(va_arg(args, int)));
+					total += print_int((long)(va_arg(args, int)));
 					break;
 				case 'i':
-					total += _print((long)(va_arg(args, int)));
+					total += print_int((long)(va_arg(args, int)));
 					break;
 				default:
 					_putchar('%');
