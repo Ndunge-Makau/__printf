@@ -11,13 +11,12 @@
 int _printf(const char *format, ...)
 {
 	int count, total = 0;
-	va_list args;
 	int flag = 0;
+	va_list args;
 
 	if (format == NULL)
 		return (0);
 
-	va_start(args, format);
 	for (count = 0; *(format + count) != '\0'; count++)
 	{
 		if (format[count] == '%')
@@ -56,6 +55,5 @@ int _printf(const char *format, ...)
 			total += 1;
 		}
 	}
-	va_end(args);
 	return (total);
 }
