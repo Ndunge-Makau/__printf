@@ -1,47 +1,40 @@
 #include "main.h"
 
 /**
- * print_string - prints sa string
- * @string: string to be printed
- * Return: length of printed characters
+ * print_number - prints out an integer
+ * @n: the integer to be printed out
+ * Return: 0
  */
 
-int print_string(char *string)
+int print_number(int n)
 {
-	int count = 0;
-
-	if (string != NULL)
-	{
-		while (*string)
-		{
-			_putchar(*string++);
-			count += 1;
-		}
-	}
-	else
-		return (print_string("(null)"));
-	return (count);
-}
-/**
- * print_int - prints an integer
- * @var: variable to be printed
- * Return:
- *  length of printed characters
- */
-
-int print_int(long int var)
-{
-	int count = 0;
-
-	if (var < 0)
+	if (n < 0)
 	{
 		_putchar('-');
-		count += 1;
-		var = -var;
+		n = -n;
 	}
-	if (var / 10)
-		count += print_int(var / 10);
-	_putchar(var % 10 + '0');
-	count += 1;
-	return (count);
+	if (n / 10)
+	{
+		print_number(n / 10);
+		_putchar(n % 10 + '0');
+	}
+	return (0);
+}
+/**
+ * print_string - print out string
+ * @c: the string to be printed out
+ * Return: 0
+ */
+
+int print_string(char *c)
+{
+	int len = strlen(c);
+	int i = 0;
+
+	while (i < len)
+	{
+		_putchar(c[i]);
+		i++;
+	}
+	return (0);
 }
